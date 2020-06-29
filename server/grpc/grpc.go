@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	"github.com/lixingbo0001/ddup-go-util/util"
+	"github.com/winkb/ddup-go-util/util"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/service/grpc"
