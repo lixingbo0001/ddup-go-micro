@@ -28,6 +28,10 @@ type grpcService struct {
 	service micro.Service
 }
 
+func (s *grpcService)GetService()micro.Service  {
+	return s.service
+}
+
 func (s *grpcService) Register(f func(service micro.Service) error) {
 	util.RegMust(func() error {
 		return f(s.service)
