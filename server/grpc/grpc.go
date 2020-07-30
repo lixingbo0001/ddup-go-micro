@@ -18,13 +18,15 @@ func Handle(registryAddress string, serviceName string, serviceAddress string) *
 		micro.Name(serviceName),
 		micro.Registry(reg),
 	)
-
+	
 	return &grpcService{
+		registry:reg,
 		service: rpcService,
 	}
 }
 
 type grpcService struct {
+	registry registry.Registry
 	service micro.Service
 }
 
