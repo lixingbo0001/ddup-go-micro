@@ -1,27 +1,16 @@
 package grpc
 
 import (
-	"github.com/winkb/ddup-go-util/util"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/service/grpc"
-	"github.com/micro/go-plugins/registry/consul"
+	"github.com/winkb/ddup-go-util/util"
 )
 
-func Handle(registryAddress string, serviceName string, serviceAddress string) *grpcService {
-	reg := consul.NewRegistry(
-		registry.Addrs(registryAddress),
-	)
-
-	rpcService := grpc.NewService(
-		micro.Address(serviceAddress),
-		micro.Name(serviceName),
-		micro.Registry(reg),
-	)
+func Handle(reg registry.Registry, service micro.Service ) *grpcService {
 	
 	return &grpcService{
 		registry:reg,
-		service: rpcService,
+		service: service,
 	}
 }
 
