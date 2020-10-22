@@ -6,20 +6,23 @@ import (
 	"github.com/winkb/ddup-go-util/util"
 )
 
-func Handle(reg registry.Registry, service micro.Service ) *grpcService {
-	
+func Handle(service micro.Service, reg registry.Registry) *grpcService {
+	if reg != nil {
+		service.Init(micro.Registry(reg))
+	}
+
 	return &grpcService{
-		registry:reg,
-		service: service,
+		registry: reg,
+		service:  service,
 	}
 }
 
 type grpcService struct {
 	registry registry.Registry
-	service micro.Service
+	service  micro.Service
 }
 
-func (s *grpcService)GetService()micro.Service  {
+func (s *grpcService) GetService() micro.Service {
 	return s.service
 }
 
